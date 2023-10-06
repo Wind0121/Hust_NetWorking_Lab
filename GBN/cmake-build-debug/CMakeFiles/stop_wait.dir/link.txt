@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/stop_wait.dir/src/GBN.cpp.o CMakeFiles/stop_wait.dir/src/GBNRdtReceiver.cpp.o CMakeFiles/stop_wait.dir/src/GBNRdtSender.cpp.o -o /mnt/e/Clion_Project/Net_Lab_2_GBN/GBN/bin/stop_wait  /mnt/e/Clion_Project/Net_Lab_2_GBN/GBN/lib/libnetsim.a 

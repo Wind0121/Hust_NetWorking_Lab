@@ -1,0 +1,3 @@
+/mnt/e/Clion_Project/Net_Lab_2_GBN/GBN/cmake-build-debug/CMakeFiles/GBN.dir
+/mnt/e/Clion_Project/Net_Lab_2_GBN/GBN/cmake-build-debug/CMakeFiles/edit_cache.dir
+/mnt/e/Clion_Project/Net_Lab_2_GBN/GBN/cmake-build-debug/CMakeFiles/rebuild_cache.dir
