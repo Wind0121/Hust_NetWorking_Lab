@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/stop_wait.dir/src/SR.cpp.o CMakeFiles/stop_wait.dir/src/SRRdtReceiver.cpp.o CMakeFiles/stop_wait.dir/src/SRRdtSender.cpp.o -o /mnt/e/Clion_Project/Net_Lab_2_SR/StopWait/bin/stop_wait  /mnt/e/Clion_Project/Net_Lab_2_SR/StopWait/lib/libnetsim.a 
