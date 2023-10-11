@@ -36,6 +36,11 @@ bool GBNRdtSender::send(const Message &message) {
     buf.push_back(packet);//送入缓冲区
 
     pUtils->printPacket("发送方发送报文", packet);
+    printf("发送方窗口:[ ");
+    for (int i = 0; i < buf.size(); i++) {
+        printf("%d ", (base + i) % SeqNum);
+    }
+    printf("]\n");
 //    printf("当前的左端：%d 右端：%d\n",base,nextSeq);
     if(!timer_running){
         timer_running = true;
@@ -52,7 +57,7 @@ void GBNRdtSender::receive(const Packet &ackPkt) {
     int checkSum = pUtils->calculateCheckSum(ackPkt);
     int offacknum = (ackPkt.acknum - base + SeqNum) % SeqNum;
     //判断该确认是否在窗口内
-    if(checkSum == ackPkt.checksum && offacknum < buf.size()){
+    if(checkSum == ackPkt.checksum && offacknum < buf.size() && offacknum >= 0){
         pUtils->printPacket("发送方正确收到确认", ackPkt);
         pns->stopTimer(SENDER,base);
         timer_running = false;
@@ -60,9 +65,14 @@ void GBNRdtSender::receive(const Packet &ackPkt) {
             buf.pop_front();
             base = (base + 1) % SeqNum;
         }
+        printf("发送方窗口:[ ");
+        for (int i = 0; i < buf.size(); i++) {
+            printf("%d ", (base + i) % SeqNum);
+        }
+        printf("]\n");
         if (buf.size() != 0) {
             timer_running = true;
-            pns->startTimer(SENDER, Configuration::TIME_OUT, this->base);//以基准包的序号开启计时器
+            pns->startTimer(SENDER, Configuration::TIME_OUT, base);//以基准包的序号开启计时器
         }
     }else if(checkSum != ackPkt.checksum)
         pUtils->printPacket("发送方没有正确收到该报文确认,数据校验错误", ackPkt);
@@ -76,6 +86,7 @@ void GBNRdtSender::timeoutHandler(int seqNum) {
 //        pUtils->printPacket("发送方定时器时间到，重发报文", pt);
 //        printf("当前的左端：%d 右端：%d\n",base,nextSeq);
 //    }
+    //这里的seqNum就是最早发送且未确认的序号
     pns->stopTimer(SENDER,seqNum);
     pns->startTimer(SENDER, Configuration::TIME_OUT,seqNum);
     for(auto pt : buf)
