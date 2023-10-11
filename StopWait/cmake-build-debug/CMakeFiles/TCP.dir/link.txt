@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/TCP.dir/src/TCP.cpp.o CMakeFiles/TCP.dir/src/TCPRdtReceiver.cpp.o CMakeFiles/TCP.dir/src/TCPRdtSender.cpp.o -o /mnt/e/Clion_Project/Net_Lab_2_TCP/StopWait/bin/TCP  /mnt/e/Clion_Project/Net_Lab_2_TCP/StopWait/lib/libnetsim.a 

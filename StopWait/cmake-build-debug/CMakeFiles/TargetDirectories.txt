@@ -1,0 +1,3 @@
+/mnt/e/Clion_Project/Net_Lab_2_TCP/StopWait/cmake-build-debug/CMakeFiles/TCP.dir
+/mnt/e/Clion_Project/Net_Lab_2_TCP/StopWait/cmake-build-debug/CMakeFiles/edit_cache.dir
+/mnt/e/Clion_Project/Net_Lab_2_TCP/StopWait/cmake-build-debug/CMakeFiles/rebuild_cache.dir
