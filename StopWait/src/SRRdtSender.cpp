@@ -44,6 +44,11 @@ bool SRRdtSender::send(const Message &message) {
     //送入缓存，更新nextseq
     pcks[pck.seqnum] = pck;
     nextseq = (nextseq + 1) % SeqNum;
+    printf("发送方窗口:[ ");
+    for (int i = 0; i < getWinsize(); i++) {
+        printf("%d(%d) ", (send_base + i) % SeqNum,st[(send_base + i) % SeqNum]);
+    }
+    printf("]\n");
 
     return true;
 }
@@ -61,11 +66,21 @@ void SRRdtSender::receive(const Packet &ackPkt) {
             st[ackPkt.acknum] = true;
             pns->stopTimer(SENDER, ackPkt.acknum);
         }
+        printf("发送方窗口:[ ");
+        for (int i = 0; i < getWinsize(); i++) {
+            printf("%d(%d) ", (send_base + i) % SeqNum,st[(send_base + i) % SeqNum]);
+        }
+        printf("]->");
         //窗口前移
         while(st[send_base]){
             st[send_base] = false;
             send_base = (send_base + 1) % SeqNum;
         }
+        printf("发送方窗口:[ ");
+        for (int i = 0; i < getWinsize(); i++) {
+            printf("%d(%d) ", (send_base + i) % SeqNum,st[(send_base + i) % SeqNum]);
+        }
+        printf("]\n");
     }else if(checkSum != ackPkt.checksum)
         pUtils->printPacket("发送方没有正确收到该报文确认,数据校验错误", ackPkt);
     else
