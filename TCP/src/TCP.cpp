@@ -1,4 +1,4 @@
-// StopWait.cpp : 定义控制台应用程序的入口点。
+// TCP.cpp : 定义控制台应用程序的入口点。
 //
 
 
@@ -18,8 +18,8 @@ int main(int argc, char* argv[])
 	pns->init();
 	pns->setRtdSender(ps);
 	pns->setRtdReceiver(pr);
-	pns->setInputFile("/mnt/e/Clion_Project/Net_Lab_2_TCP/input.txt");
-	pns->setOutputFile("/mnt/e/Clion_Project/Net_Lab_2_TCP/output.txt");
+	pns->setInputFile("input.txt");
+	pns->setOutputFile("output.txt");
 
 	pns->start();
 

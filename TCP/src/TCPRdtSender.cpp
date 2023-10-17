@@ -100,6 +100,7 @@ void TCPRdtSender::receive(const Packet &ackPkt) {
 void TCPRdtSender::timeoutHandler(int seqNum) {
 	//唯一一个定时器,无需考虑seqNum
 	pUtils->printPacket("发送方定时器时间到，重发序号最小的报文", buf.front());
+    repeat_cnt = 0;
 	pns->stopTimer(SENDER,seqNum);
 	pns->startTimer(SENDER, Configuration::TIME_OUT,seqNum);
 	pns->sendToNetworkLayer(RECEIVER, buf.front());
