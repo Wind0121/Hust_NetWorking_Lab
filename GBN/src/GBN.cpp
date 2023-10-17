@@ -18,8 +18,8 @@ int main(int argc, char* argv[])
 	pns->init();
 	pns->setRtdSender(ps);
 	pns->setRtdReceiver(pr);
-	pns->setInputFile("/mnt/e/Clion_Project/Net_Lab_2_GBN/input.txt");
-	pns->setOutputFile("/mnt/e/Clion_Project/Net_Lab_2_GBN/output.txt");
+	pns->setInputFile("input.txt");
+	pns->setOutputFile("output.txt");
 
 	pns->start();
 
