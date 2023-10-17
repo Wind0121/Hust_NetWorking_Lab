@@ -1,0 +1,4 @@
+/home/kezzy/.cache/JetBrains/RemoteDev/dist/7d288fc846b32_CLion-233.8264.3/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/kezzy/.cache/JetBrains/RemoteDev/dist/7d288fc846b32_CLion-233.8264.3/bin/ninja/linux/x64/ninja -G Ninja -S /mnt/e/Clion_Project/Net_Lab_2_SR/SR -B /mnt/e/Clion_Project/Net_Lab_2_SR/SR/cmake-build-debug
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /mnt/e/Clion_Project/Net_Lab_2_SR/SR/cmake-build-debug

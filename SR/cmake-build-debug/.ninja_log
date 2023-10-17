@@ -1,0 +1,7 @@
+# ninja log v5
+10	377	1697517407318842200	CMakeFiles/SR.dir/src/SRRdtSender.cpp.o	8edbe765e8fd7a5b
+9	370	1697517407295843900	CMakeFiles/SR.dir/src/SRRdtReceiver.cpp.o	d968622885c3f57d
+380	625	1697517407574871300	/mnt/e/Clion_Project/Net_Lab_2_SR/SR/bin/SR	a83aaae83d219678
+8	335	1697517407284843200	CMakeFiles/SR.dir/src/SR.cpp.o	8d1a6496cdc69dab
+15	294	1697518103928259200	CMakeFiles/SR.dir/src/SR.cpp.o	8d1a6496cdc69dab
+298	495	1697518104131259400	/mnt/e/Clion_Project/Net_Lab_2_SR/SR/bin/SR	a83aaae83d219678
