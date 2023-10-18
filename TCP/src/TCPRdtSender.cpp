@@ -61,13 +61,13 @@ void TCPRdtSender::receive(const Packet &ackPkt) {
         return;
     int checkSum = pUtils->calculateCheckSum(ackPkt);
     int offset_ack = (ackPkt.acknum - send_base + SeqNum) % SeqNum;
-    if(checkSum == ackPkt.checksum && offset_ack <= buf.size() && offset_ack > 0){
+    if(checkSum == ackPkt.checksum && offset_ack < buf.size()){
         pUtils->printPacket("发送方正确收到确认", ackPkt);
         //重置重复收到确认的计数
         repeat_cnt = 0;
         //停止计时器
         pns->stopTimer(SENDER,send_base);
-        while(send_base != ackPkt.acknum){
+        while(send_base != ((ackPkt.acknum + 1) % SeqNum)){
             buf.pop_front();
             send_base = (send_base + 1) % SeqNum;
         }

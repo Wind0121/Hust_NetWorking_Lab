@@ -35,15 +35,24 @@ void TCPRdtReceiver::receive(const Packet &packet) {
             memcpy(msgs[packet.seqnum].data,packet.payload,sizeof(packet.payload));
         }
 
+        printf("接收方窗口:[ ");
+        for (int i = 0; i < Winsize; i++) {
+            printf("%d(%d) ", (rcv_base + i) % SeqNum,st[(rcv_base + i) % SeqNum]);
+        }
+        printf("]\n");
 		//判断窗口是否可以前移
         while(st[rcv_base]){
             st[rcv_base] = false;
             pns->delivertoAppLayer(RECEIVER,msgs[rcv_base]);
             rcv_base = (rcv_base + 1) % SeqNum;
         }
-
-        //发送确认报文，采用累计确认，直接发送rcv_base
-        lastAckPkt.acknum = rcv_base;
+        printf("接收方窗口:[ ");
+        for (int i = 0; i < Winsize; i++) {
+            printf("%d(%d) ", (rcv_base + i) % SeqNum,st[(rcv_base + i) % SeqNum]);
+        }
+        printf("]\n");
+        //发送确认报文，采用累计确认，直接发送rcv_base - 1
+        lastAckPkt.acknum = (rcv_base - 1 + SeqNum) % SeqNum;
         lastAckPkt.checksum = pUtils->calculateCheckSum(lastAckPkt);
         pUtils->printPacket("接收方发送确认报文", lastAckPkt);
         pns->sendToNetworkLayer(SENDER, lastAckPkt);
