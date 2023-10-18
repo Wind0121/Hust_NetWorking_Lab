@@ -36,7 +36,11 @@ void SRRdtReceiver::receive(const Packet &packet) {
             memcpy(msgs[packet.seqnum].data, packet.payload, sizeof(packet.payload));
             st[packet.seqnum] = true;
         }
-
+        printf("接收方窗口:[ ");
+        for (int i = 0; i < Winsize; i++) {
+            printf("%d(%d) ", (rcv_base + i) % SeqNum,st[(rcv_base + i) % SeqNum]);
+        }
+        printf("]\n");
         AckPkt.acknum = packet.seqnum;
         AckPkt.checksum = pUtils->calculateCheckSum(AckPkt);
         pUtils->printPacket("接收方发送确认报文", AckPkt);
@@ -48,6 +52,10 @@ void SRRdtReceiver::receive(const Packet &packet) {
                 st[rcv_base] = false;
                 rcv_base = (rcv_base + 1) % SeqNum;
             }
+        }
+        printf("接收方窗口:[ ");
+        for (int i = 0; i < Winsize; i++) {
+            printf("%d(%d) ", (rcv_base + i) % SeqNum,st[(rcv_base + i) % SeqNum]);
         }
 	}
 	else {
